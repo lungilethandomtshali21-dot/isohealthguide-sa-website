@@ -4,812 +4,734 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07584f">
-<meta name="description" content="IsoHealthGuide SA helps people organise and communicate their health concerns before a healthcare consultation.">
-<title>IsoHealthGuide SA | Make the Conversation Count</title>
-
+<meta name="theme-color" content="#f7faf8">
+<title>IsoHealthGuide SA | Your health, understood.</title>
+<meta name="description" content="A multilingual digital health companion designed to help people communicate their health concerns with confidence.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --teal:#073f49;
-  --deep:#07584f;
-  --green:#159b57;
-  --mint:#eff8f1;
-  --gold:#d9a927;
-  --ink:#183a40;
-  --muted:#687d7e;
-  --line:#dce8e2;
-  --white:#fff;
-  --shadow:0 20px 60px rgba(7,63,73,.12);
+  --ink: #102d2b;
+  --muted: #647a76;
+  --green: #087d68;
+  --green-dark: #07594f;
+  --mint: #dff3eb;
+  --mint-light: #eff8f4;
+  --lime: #c8e9a6;
+  --cream: #f7faf8;
+  --white: #ffffff;
+  --line: #e3ece7;
+  --shadow: 0 24px 70px rgba(15, 55, 46, .10);
 }
 
-* {box-sizing:border-box}
-html {scroll-behavior:smooth}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
-  margin:0;
-  font-family:'DM Sans',sans-serif;
-  color:var(--ink);
-  background:white;
-  line-height:1.65;
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
-a {text-decoration:none;color:inherit}
-.container {width:min(1160px,calc(100% - 44px));margin:auto}
-h1,h2,h3 {font-family:'Manrope',sans-serif;letter-spacing:-1.5px}
-h1 {font-size:clamp(42px,5vw,68px);line-height:1.1;color:var(--teal)}
-h2 {font-size:clamp(32px,4vw,48px);line-height:1.2;color:var(--teal)}
-h1 em,h2 em {font-style:normal;color:var(--green)}
-p {color:var(--muted)}
-button {font:inherit;cursor:pointer}
+h1,h2,h3,p { margin-top: 0; }
+h1,h2,h3 { font-family: "Manrope", sans-serif; letter-spacing: -.045em; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+.container { width: min(1160px, calc(100% - 48px)); margin: auto; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.eyebrow:before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: var(--green);
+}
+.section { padding: 108px 0; }
+.section-heading { max-width: 650px; margin-bottom: 48px; }
+.section-heading h2 {
+  font-size: clamp(34px, 4.5vw, 54px);
+  line-height: 1.08;
+  margin: 17px 0;
+}
+.section-heading p { color: var(--muted); font-size: 16px; line-height: 1.8; max-width: 530px; }
 
 /* NAVIGATION */
-
-header {
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(255,255,255,.96);
-  border-bottom:1px solid var(--line);
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(247,250,248,.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(16,45,43,.07);
 }
-.nav {
-  min-height:88px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:25px;
+nav {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
 }
-.logo img {width:270px;max-height:75px;object-fit:contain;display:block}
-.navlinks {display:flex;align-items:center;gap:25px;font-size:13px;font-weight:700}
-.navlinks a:hover {color:var(--green)}
-.nav-button {
-  background:var(--deep);
-  color:white;
-  padding:12px 19px;
-  border-radius:7px;
+.brand img { width: 190px; max-height: 54px; object-fit: contain; display: block; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { color: #526963; font-size: 13px; font-weight: 700; transition: .2s; }
+.nav-links a:hover { color: var(--green); }
+.nav-cta, .primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 21px;
+  border-radius: 9px;
+  color: white;
+  background: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid var(--green);
+  transition: .25s;
 }
-.menu {
-  display:none;
-  background:none;
-  border:0;
-  font-size:28px;
-  color:var(--deep);
-}
+.nav-cta:hover, .primary-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
+.menu-toggle { display: none; border: 0; background: transparent; color: var(--ink); font-size: 26px; cursor: pointer; }
 
 /* HERO */
-
 .hero {
-  padding:75px 0 45px;
+  position: relative;
+  overflow: hidden;
+  padding: 88px 0 96px;
   background:
-  radial-gradient(circle at 85% 40%,#e7f5e9 0,transparent 35%),
-  linear-gradient(180deg,#fbfdfb,white);
-  overflow:hidden;
+    radial-gradient(circle at 78% 42%, rgba(197,232,211,.72), transparent 31%),
+    linear-gradient(120deg, #f7faf8 0%, #edf7f1 100%);
+}
+.hero:after {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border: 1px solid rgba(8,125,104,.10);
+  border-radius: 50%;
+  right: -190px;
+  top: -230px;
 }
 .hero-grid {
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  align-items:center;
-  gap:45px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 65px;
+  position: relative;
+  z-index: 1;
 }
-.eyebrow,.label {
-  color:var(--green);
-  font-size:11px;
-  letter-spacing:2px;
-  font-weight:800;
-  text-transform:uppercase;
+.hero-copy h1 {
+  max-width: 590px;
+  font-size: clamp(46px, 6vw, 72px);
+  line-height: 1.02;
+  margin: 22px 0;
 }
-.eyebrow {display:flex;gap:10px;align-items:center}
-.dot {width:8px;height:8px;border-radius:50%;background:var(--gold)}
-.hero-copy h1 {margin:20px 0}
-.lede {font-size:17px;line-height:1.9;max-width:570px}
-.actions {display:flex;flex-wrap:wrap;gap:12px;margin:28px 0}
-.btn {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:15px 20px;
-  border-radius:8px;
-  font-size:13px;
-  font-weight:700;
-  transition:.2s;
+.hero-copy h1 span { color: var(--green); }
+.hero-copy > p {
+  max-width: 490px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 30px;
 }
-.btn:hover {transform:translateY(-3px)}
-.primary {background:var(--deep);color:white;box-shadow:0 8px 20px #07584f25}
-.secondary {border:1px solid #cbded2;color:var(--deep);background:white}
-.small-note {font-size:12px}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 13px; align-items: center; }
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 18px;
+  border: 1px solid #cbdcd3;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(255,255,255,.5);
+}
+.secondary-btn:hover { background: white; }
+.hero-note { margin-top: 26px; color: #789089; font-size: 11px; }
 
-/* HERO CHAT ILLUSTRATION */
-
-.hero-visual {
-  min-height:440px;
-  position:relative;
-  display:grid;
-  place-items:center;
+/* PRODUCT VISUAL */
+.visual-stage {
+  min-height: 490px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 .orbit {
-  position:absolute;
-  width:390px;
-  height:390px;
-  border:1px solid #cce5d4;
-  border-radius:50%;
+  width: 410px;
+  height: 410px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d9f0e5, #c5e5d5);
+  position: absolute;
 }
-.orbit:after {
-  content:"";
-  position:absolute;
-  inset:35px;
-  border:1px solid #e2ebd4;
-  border-radius:50%;
+.orbit:before, .orbit:after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(8,125,104,.16);
+  border-radius: 50%;
+  inset: -28px;
 }
-.chat-card {
-  position:relative;
-  z-index:2;
-  width:min(340px,90%);
-  background:white;
-  padding:23px;
-  border-radius:19px;
-  box-shadow:var(--shadow);
-  transform:rotate(-3deg);
-}
-.chat-head {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  border-bottom:1px solid #edf1ed;
-  padding-bottom:15px;
-}
-.chat-icon {
-  width:38px;height:38px;
-  background:var(--deep);
-  color:white;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  font-size:22px;
-}
-.chat-head strong,.chat-head small {display:block}
-.chat-head small {font-size:10px;color:#899a94}
-.online {margin-left:auto;width:9px;height:9px;background:#30b46b;border-radius:50%}
-.message {
-  padding:13px;
-  border-radius:13px;
-  margin-top:16px;
-  font-size:12px;
-}
-.received {background:#eff6f0;border-top-left-radius:3px}
-.sent {background:#e0f3e6;margin-left:30px;border-top-right-radius:3px}
-.input-preview {
-  margin-top:18px;
-  border:1px solid var(--line);
-  padding:11px;
-  border-radius:9px;
-  font-size:11px;
-  color:#9aa9a1;
-  display:flex;
-  justify-content:space-between;
-}
-.send {background:var(--green);color:white;padding:3px 8px;border-radius:5px}
-.floating {
-  position:absolute;
-  bottom:38px;
-  left:0;
-  z-index:3;
-  background:white;
-  box-shadow:var(--shadow);
-  padding:14px 19px;
-  border-radius:12px;
-  font-size:12px;
-}
-.floating strong,.floating small {display:block}
-.floating small {color:var(--muted);font-size:10px}
-.visual-note {
-  position:absolute;
-  top:38px;
-  right:0;
-  background:var(--deep);
-  color:white;
-  padding:20px;
-  border-radius:13px;
-  transform:rotate(7deg);
-  font-size:11px;
-}
-
-/* PRINCIPLES STRIP */
-
-.strip {
-  background:var(--mint);
-  border-block:1px solid #e5efe7;
-}
-.strip-inner {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  padding:23px 0;
-  text-align:center;
-  font-size:12px;
-  font-weight:700;
-  color:#466269;
-}
-.strip span {color:var(--green);font-size:19px;margin-right:7px}
-
-/* GENERAL SECTIONS */
-
-section.content {padding:95px 0}
-.two-col {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:75px;
-  align-items:center;
-}
-.section-text {font-size:15px;line-height:1.9}
-.cards {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  margin-top:45px;
-}
-.card {
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:27px;
-  background:white;
-  transition:.25s;
-}
-.card:hover {transform:translateY(-5px);box-shadow:var(--shadow)}
-.card-icon {font-size:30px;color:var(--green)}
-.card h3 {font-size:19px;color:var(--teal)}
-.card p {font-size:13px;line-height:1.8}
-.number {font-size:11px;color:#94aaa0;font-weight:800}
-
-/* JOURNEY */
-
-.journey {background:#f4f8f5}
-.center {text-align:center;max-width:750px;margin:auto}
-.center h2 {margin-bottom:12px}
-.steps {
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:13px;
-  margin-top:48px;
-}
-.step {
-  background:white;
-  padding:21px 16px;
-  border:1px solid var(--line);
-  border-radius:12px;
-}
-.step-number {color:var(--green);font-weight:800;font-size:12px}
-.step h3 {font-size:17px}
-.step p {font-size:12px;line-height:1.8}
-
-/* AUDIENCE SECTIONS */
-
-.audience {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:55px;
-  padding:55px;
-  border-radius:22px;
-  background:#eff8f1;
-}
-.audience h2 {font-size:clamp(30px,3.5vw,43px)}
-.ticks {list-style:none;padding:0}
-.ticks li {padding:8px 0;font-size:13px;color:#466269}
-.ticks li:before {content:"✓";color:var(--green);font-weight:800;margin-right:12px}
-.visual-panel {
-  min-height:340px;
-  display:grid;
-  place-items:center;
-  background:#dcefe1;
-  border-radius:18px;
-  position:relative;
-  overflow:hidden;
-}
+.orbit:after { inset: -58px; opacity: .55; }
 .phone {
-  width:225px;
-  background:#143f45;
-  border:7px solid #143f45;
-  border-radius:29px;
-  padding:24px 13px;
-  box-shadow:var(--shadow);
-  transform:rotate(4deg);
+  position: relative;
+  z-index: 2;
+  width: 258px;
+  padding: 10px;
+  background: #102d2b;
+  border-radius: 35px;
+  box-shadow: 0 30px 65px rgba(13,54,45,.25);
+  transform: rotate(-4deg);
 }
 .phone-screen {
-  background:white;
-  min-height:270px;
-  border-radius:18px;
-  padding:20px 13px;
+  background: #f5faf7;
+  border-radius: 27px;
+  min-height: 430px;
+  overflow: hidden;
 }
-.phone-screen strong {color:var(--deep);font-size:13px}
-.phone-screen p {font-size:11px}
-.phone-option {
-  padding:12px;
-  background:#eff7f0;
-  margin:9px 0;
-  border-radius:8px;
-  font-size:10px;
+.phone-top {
+  background: #07594f;
+  color: white;
+  padding: 21px 15px 17px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.summary {
-  width:85%;
-  background:white;
-  border-radius:15px;
-  padding:26px;
-  box-shadow:var(--shadow);
-  transform:rotate(-3deg);
+.phone-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: #c8e9a6; color: #07594f; font-weight: 800;
 }
-.summary h3 {font-size:20px}
-.summary-line {
-  padding:15px 0;
-  border-bottom:1px solid var(--line);
-  font-size:12px;
-  color:#5e7477;
+.phone-top strong { display: block; font-size: 11px; }
+.phone-top small { display: block; font-size: 9px; opacity: .75; margin-top: 3px; }
+.chat-area { padding: 17px 12px; }
+.chat-date { text-align: center; font-size: 8px; color: #8a9e97; margin-bottom: 15px; }
+.bubble {
+  max-width: 88%;
+  padding: 11px 12px;
+  font-size: 10px;
+  line-height: 1.6;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(20,60,48,.04);
 }
+.bubble.bot { background: white; border-top-left-radius: 3px; }
+.bubble.user { background: #d9f2df; margin-left: auto; border-top-right-radius: 3px; }
+.language-chip {
+  display: inline-block;
+  background: #e7f4ed;
+  color: #087d68;
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 8px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.phone-input {
+  margin: 14px 10px;
+  background: white;
+  border: 1px solid #e3ece7;
+  padding: 11px;
+  border-radius: 20px;
+  font-size: 9px;
+  color: #9aaca5;
+}
+.floating-card {
+  position: absolute;
+  z-index: 3;
+  background: white;
+  padding: 15px 17px;
+  border-radius: 13px;
+  box-shadow: var(--shadow);
+}
+.floating-card strong { display: block; font-size: 12px; margin-bottom: 4px; }
+.floating-card small { color: var(--muted); font-size: 9px; }
+.float-one { top: 54px; right: -5px; }
+.float-two { bottom: 55px; left: -10px; }
+.float-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--mint);
+  color: var(--green);
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* TRUST BAR */
+.trust-strip { background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.trust-inner {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+.trust-label { color: #84968f; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.trust-item { color: #41625a; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 9px; }
+.trust-item span { color: var(--green); font-size: 18px; }
+
+/* VALUE */
+.value-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.value-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 28px;
+  min-height: 225px;
+  transition: .25s;
+}
+.value-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.card-icon {
+  width: 43px; height: 43px; border-radius: 12px;
+  display: grid; place-items: center;
+  color: var(--green); background: var(--mint-light);
+  font-size: 20px; margin-bottom: 24px;
+}
+.value-card h3 { font-size: 18px; margin-bottom: 10px; }
+.value-card p { color: var(--muted); font-size: 13px; line-height: 1.75; margin: 0; }
+
+/* HOW IT WORKS */
+.process-section { background: #103b35; color: white; position: relative; overflow: hidden; }
+.process-section:after {
+  content: ""; position: absolute; width: 500px; height: 500px;
+  border: 1px solid rgba(255,255,255,.09); border-radius: 50%;
+  right: -170px; bottom: -280px;
+}
+.process-section .eyebrow { color: #b6e3ce; }
+.process-section .eyebrow:before { background: #b6e3ce; }
+.process-section .section-heading p { color: #b5ccc4; }
+.process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; position: relative; z-index: 1; }
+.process-card {
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.055);
+  border-radius: 14px;
+  padding: 25px 21px;
+  min-height: 205px;
+}
+.step-number { color: #bde4a5; font-family: "Manrope"; font-weight: 800; font-size: 12px; }
+.process-card h3 { font-size: 17px; margin: 32px 0 10px; }
+.process-card p { color: #b5ccc4; font-size: 12px; line-height: 1.7; margin: 0; }
+
+/* PATIENT AND CLINIC */
+.split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 75px; align-items: center; }
+.feature-panel {
+  background: #e8f4ed;
+  border-radius: 22px;
+  min-height: 380px;
+  padding: 34px;
+  position: relative;
+  overflow: hidden;
+}
+.feature-panel:before {
+  content: ""; position: absolute; width: 260px; height: 260px;
+  border-radius: 50%; background: #d1ebdc; right: -80px; top: -80px;
+}
+.summary-window {
+  position: relative; z-index: 1; background: white;
+  border-radius: 13px; padding: 24px;
+  box-shadow: 0 18px 45px rgba(20,65,48,.10);
+  max-width: 370px; margin: 28px auto;
+}
+.summary-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 15px; }
+.summary-head strong { font-size: 12px; }
+.summary-status { background: #e4f4e8; color: #26744d; padding: 5px 8px; border-radius: 5px; font-size: 8px; font-weight: 800; }
+.summary-label { color: #8a9c95; font-size: 8px; text-transform: uppercase; letter-spacing: .1em; margin: 17px 0 6px; font-weight: 800; }
+.summary-text { font-size: 10px; line-height: 1.7; color: #536c63; }
+.feature-copy h2 { font-size: clamp(34px,4vw,49px); line-height: 1.1; margin: 17px 0; }
+.feature-copy > p { color: var(--muted); font-size: 15px; line-height: 1.8; }
+.feature-list { list-style: none; padding: 0; margin: 25px 0 0; display: grid; gap: 14px; }
+.feature-list li { display: flex; gap: 12px; color: #46645b; font-size: 13px; line-height: 1.6; }
+.check { flex: 0 0 21px; height: 21px; border-radius: 50%; background: var(--mint); color: var(--green); display: grid; place-items: center; font-size: 11px; font-weight: 800; }
 
 /* SAFETY */
+.safety { background: #f0f6f2; }
+.safety-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
+.safety-box { background: white; border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+.safety-row { display: flex; align-items: flex-start; gap: 15px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.safety-row:last-child { border: 0; padding-bottom: 0; }
+.safety-row:first-child { padding-top: 0; }
+.safety-symbol { width: 34px; height: 34px; flex: 0 0 34px; display: grid; place-items: center; border-radius: 9px; background: var(--mint-light); color: var(--green); font-weight: 800; }
+.safety-row strong { font-size: 13px; display: block; margin: 2px 0 5px; }
+.safety-row p { font-size: 11px; line-height: 1.6; color: var(--muted); margin: 0; }
 
-.safety {background:#f8faf8}
-.safety-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:25px;
+/* CTA */
+.cta-section { padding: 90px 0; }
+.cta-panel {
+  background: linear-gradient(115deg, #087d68, #064f49);
+  border-radius: 22px;
+  padding: 65px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  position: relative;
+  overflow: hidden;
 }
-.safety-item {
-  padding:20px 0;
-  border-bottom:1px solid var(--line);
+.cta-panel:after {
+  content: ""; position: absolute; width: 340px; height: 340px;
+  border: 1px solid rgba(255,255,255,.15); border-radius: 50%;
+  right: 20%; top: -230px;
 }
-.safety-item strong {display:block;color:var(--teal)}
-.safety-item small {color:var(--muted)}
-
-/* CONTACT */
-
-.contact-box {
-  background:var(--deep);
-  color:white;
-  padding:65px;
-  border-radius:20px;
-  display:grid;
-  grid-template-columns:1.3fr .7fr;
-  gap:35px;
-  align-items:center;
-}
-.contact-box h2 {color:white}
-.contact-box p {color:#d0e7dc}
-.contact-box .label {color:#a9dfb9}
-.light-btn {background:white;color:var(--deep)}
+.cta-panel h2 { font-size: clamp(32px,4vw,47px); max-width: 560px; line-height: 1.1; margin: 13px 0; }
+.cta-panel p { color: #c6e3d8; font-size: 14px; line-height: 1.7; max-width: 500px; margin: 0; }
+.cta-panel .primary-btn { background: white; border-color: white; color: var(--green-dark); white-space: nowrap; position: relative; z-index: 1; }
+.cta-panel .primary-btn:hover { background: var(--lime); }
 
 /* FOOTER */
+footer { background: #0d2926; color: white; padding: 50px 0 25px; }
+.footer-top { display: flex; justify-content: space-between; gap: 35px; padding-bottom: 38px; }
+.footer-brand { max-width: 330px; }
+.footer-brand img { width: 185px; max-height: 55px; object-fit: contain; filter: brightness(0) invert(1); }
+.footer-brand p { color: #a7c0b7; font-size: 12px; line-height: 1.8; margin-top: 18px; }
+.footer-links { display: flex; gap: 65px; }
+.footer-col strong { display: block; font-size: 11px; margin-bottom: 17px; }
+.footer-col a { display: block; color: #a7c0b7; font-size: 11px; margin: 12px 0; }
+.footer-col a:hover { color: white; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.13); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; color: #819e94; font-size: 10px; }
 
-footer {background:#073f49;color:white;padding:45px 0 20px}
-.footer-top {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:25px;
-  padding-bottom:35px;
+/* RESPONSIVE */
+@media(max-width: 900px) {
+  .hero-grid { gap: 20px; }
+  .visual-stage { transform: scale(.9); }
+  .process-grid { grid-template-columns: repeat(2,1fr); }
+  .split-section { gap: 35px; }
+  .trust-inner { flex-wrap: wrap; padding: 22px 0; justify-content: center; }
+  .trust-label { width: 100%; text-align: center; }
 }
-.footer-logo img {width:220px;background:white;border-radius:5px}
-.footer-links {display:flex;gap:20px;flex-wrap:wrap;font-size:12px}
-.footer-links a:hover {color:#a9dfb9}
-.footer-bottom {
-  border-top:1px solid #ffffff25;
-  padding-top:20px;
-  font-size:11px;
-  color:#c2d8d1;
-}
-
-/* MOBILE */
-
-@media(max-width:900px) {
-  .navlinks {gap:13px;font-size:11px}
-  .logo img {width:210px}
-  .hero-grid {gap:15px}
-  .steps {grid-template-columns:repeat(3,1fr)}
-  .audience {padding:35px;gap:25px}
-}
-@media(max-width:680px) {
-  .nav {min-height:75px}
-  .logo img {width:190px}
-  .menu {display:block}
-  .navlinks {
-    display:none;
-    position:absolute;
-    top:75px;
-    left:0;
-    right:0;
-    background:white;
-    padding:22px;
-    flex-direction:column;
-    align-items:stretch;
-    border-bottom:1px solid var(--line);
+@media(max-width: 700px) {
+  .container { width: min(100% - 36px, 520px); }
+  .section { padding: 76px 0; }
+  nav { min-height: 70px; }
+  .brand img { width: 155px; }
+  .menu-toggle { display: block; }
+  .nav-cta { display: none; }
+  .nav-links {
+    display: none; position: absolute; top: 70px; left: 0; right: 0;
+    padding: 22px 25px; background: white; border-bottom: 1px solid var(--line);
+    flex-direction: column; align-items: flex-start; gap: 20px;
   }
-  .navlinks.open {display:flex}
-  .navlinks a {padding:9px}
-  .hero {padding-top:50px}
-  .hero-grid,.two-col,.audience,.contact-box {grid-template-columns:1fr}
-  .hero-visual {min-height:390px}
-  .orbit {width:310px;height:310px}
-  .visual-note {right:0}
-  .strip-inner {grid-template-columns:1fr 1fr}
-  section.content {padding:65px 0}
-  .cards {grid-template-columns:1fr}
-  .steps {grid-template-columns:1fr 1fr}
-  .audience {padding:27px}
-  .visual-panel {min-height:320px}
-  .contact-box {padding:32px}
-  .footer-top {align-items:flex-start;flex-direction:column}
+  .nav-links.open { display: flex; }
+  .hero { padding: 65px 0 45px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 10px; }
+  .hero-copy h1 { font-size: clamp(43px, 12vw, 61px); }
+  .hero-copy > p { font-size: 15px; }
+  .visual-stage { min-height: 440px; transform: scale(.88); margin: -5px -25px -25px; }
+  .orbit { width: 330px; height: 330px; }
+  .phone { width: 235px; }
+  .phone-screen { min-height: 405px; }
+  .float-one { right: -4px; }
+  .float-two { left: -4px; }
+  .trust-item { font-size: 10px; }
+  .value-grid { grid-template-columns: 1fr; }
+  .value-card { min-height: auto; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .process-card { min-height: 190px; padding: 20px 16px; }
+  .split-section, .safety-grid { grid-template-columns: 1fr; gap: 35px; }
+  .feature-panel { min-height: 340px; padding: 20px; }
+  .summary-window { padding: 20px; }
+  .cta-section { padding: 65px 0; }
+  .cta-panel { padding: 35px 25px; flex-direction: column; align-items: flex-start; }
+  .footer-top { flex-direction: column; }
+  .footer-links { gap: 40px; }
+  .footer-bottom { flex-direction: column; }
+}
+@media(max-width: 390px) {
+  .process-grid { grid-template-columns: 1fr; }
+  .visual-stage { transform: scale(.78); margin: -30px -40px; }
 }
 </style>
 </head>
 
 <body>
-
-<header>
-  <div class="container nav">
-    <a class="logo" href="#home">
+<div class="nav-wrap">
+  <nav class="container">
+    <a class="brand" href="#home" aria-label="IsoHealthGuide SA home">
       <img src="assets/isohealthguide-logo.png" alt="IsoHealthGuide SA">
     </a>
-
-    <button class="menu" id="menu" aria-label="Open navigation" aria-expanded="false">☰</button>
-
-    <nav class="navlinks" id="navlinks">
-      <a href="#how">How it works</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#how-it-works">How it works</a>
       <a href="#patients">For patients</a>
-      <a href="#clinics">For clinics</a>
-      <a href="#about">About</a>
-      <a class="nav-button" href="#contact">Partner with us</a>
-    </nav>
-  </div>
-</header>
+      <a href="#providers">For providers</a>
+      <a href="#our-approach">Our approach</a>
+    </div>
+    <a class="nav-cta" href="#partnerships">Partner with us <span>↗</span></a>
+  </nav>
+</div>
 
 <main>
-
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="container hero-grid">
-
     <div class="hero-copy">
-      <div class="eyebrow"><span class="dot"></span> A new approach to patient communication</div>
-
-      <h1>Your health concerns deserve to be <em>understood.</em></h1>
-
-      <p class="lede">
-        Communicating your health concerns shouldn't be difficult.
-        IsoHealthGuide SA is being developed to help people organise
-        and communicate their health information before a consultation.
-      </p>
-
-      <div class="actions">
-        <a href="#patients" class="btn primary">Explore the patient journey →</a>
-        <a href="#clinics" class="btn secondary">For healthcare providers</a>
+      <span class="eyebrow">A new way to prepare for care</span>
+      <h1>Your health concerns deserve to be <span>understood.</span></h1>
+      <p>IsoHealthGuide SA is being designed to help people express their health concerns in a language they understand — and prepare for more meaningful conversations with healthcare professionals.</p>
+      <div class="hero-actions">
+        <a class="primary-btn" href="#how-it-works">Discover how it works <span>→</span></a>
+        <a class="secondary-btn" href="#providers">For healthcare providers ↗</a>
       </div>
-
-      <p class="small-note">✓ Communication support. Patient control. Professional care.</p>
+      <div class="hero-note">Designed for South Africa. Built around clearer communication.</div>
     </div>
 
-    <div class="hero-visual">
+    <div class="visual-stage" aria-label="Illustrative preview of a WhatsApp-style health conversation">
       <div class="orbit"></div>
-
-      <div class="visual-note">
-        YOUR VOICE MATTERS<br><br>
-        Your words.<br>
-        Your questions.<br>
-        Your conversation.
-      </div>
-
-      <div class="chat-card">
-        <div class="chat-head">
-          <div class="chat-icon">+</div>
-          <div><strong>Let's prepare</strong><small>A guided conversation</small></div>
-          <div class="online"></div>
-        </div>
-
-        <div class="message received">
-          What would you like the healthcare professional to understand?
-        </div>
-
-        <div class="message sent">
-          I want to explain what I've been experiencing.
-        </div>
-
-        <div class="input-preview">
-          Write your response... <span class="send">↗</span>
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-top">
+            <div class="phone-avatar">I</div>
+            <div><strong>IsoHealthGuide</strong><small>Health conversation preview</small></div>
+          </div>
+          <div class="chat-area">
+            <div class="chat-date">TODAY · PREVIEW</div>
+            <div class="bubble bot">Sawubona! Welcome. Which language would you prefer to use?</div>
+            <div class="bubble user">isiZulu, please.</div>
+            <div class="bubble bot">Of course. I can help you organise what you would like to discuss with your healthcare professional.</div>
+            <div class="bubble user">I've been having headaches.</div>
+            <div class="bubble bot">Let's organise what you've noticed so you can explain it clearly during your consultation.</div>
+            <span class="language-chip">Language preference · isiZulu</span>
+          </div>
+          <div class="phone-input">Your response would appear here…</div>
         </div>
       </div>
-
-      <div class="floating">
-        <strong>✓ Your summary</strong>
-        <small>Review before you share</small>
+      <div class="floating-card float-one">
+        <strong><span class="float-icon">◎</span>Language-first</strong>
+        <small>Designed for local languages</small>
+      </div>
+      <div class="floating-card float-two">
+        <strong><span class="float-icon">✓</span>Patient-led</strong>
+        <small>Review before sharing</small>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST STRIP -->
-<div class="strip">
-  <div class="container strip-inner">
-    <div><span>◎</span> Patient-centred</div>
-    <div><span>文</span> Language-aware</div>
-    <div><span>⌁</span> WhatsApp-first</div>
-    <div><span>✳</span> Care-focused</div>
+<div class="trust-strip">
+  <div class="container trust-inner">
+    <div class="trust-label">Built around better communication</div>
+    <div class="trust-item"><span>◉</span> Multilingual by design</div>
+    <div class="trust-item"><span>⌁</span> WhatsApp-first concept</div>
+    <div class="trust-item"><span>◇</span> Patient-centred approach</div>
   </div>
 </div>
 
-<!-- ABOUT -->
-<section class="content" id="about">
+<section class="section" id="our-approach">
   <div class="container">
-
-    <div class="two-col">
-      <div>
-        <p class="label">THE IDEA</p>
-        <h2>A clearer conversation can start <em>before</em> the consultation.</h2>
-      </div>
-
-      <div class="section-text">
-        <p>
-          People may know what they are feeling but struggle to organise
-          the details or find the words they want to use.
-        </p>
-        <p>
-          IsoHealthGuide SA is designed to help people prepare in their
-          own words, so they can take a clearer starting point into
-          a conversation with a healthcare professional.
-        </p>
-      </div>
+    <div class="section-heading">
+      <span class="eyebrow">The idea behind IsoHealthGuide</span>
+      <h2>Healthcare conversations should begin with understanding.</h2>
+      <p>Language barriers and uncertainty can make it difficult to explain what is happening. We are developing a simple digital experience to help people prepare for that conversation.</p>
     </div>
-
-    <div class="cards">
-      <article class="card">
-        <div class="card-icon">◌</div>
-        <p class="number">01 / COMMUNICATION</p>
-        <h3>Finding the words</h3>
-        <p>It can be difficult to explain a concern clearly, especially when someone is unsure where to begin.</p>
+    <div class="value-grid">
+      <article class="value-card">
+        <div class="card-icon">◎</div>
+        <h3>Speak comfortably</h3>
+        <p>Patients should be able to start organising their concerns in a language they are comfortable using.</p>
       </article>
-
-      <article class="card">
-        <div class="card-icon">⌁</div>
-        <p class="number">02 / PREPARATION</p>
-        <h3>Organising details</h3>
-        <p>People may forget important details or questions they wanted to raise during an appointment.</p>
+      <article class="value-card">
+        <div class="card-icon">✳</div>
+        <h3>Make sense of concerns</h3>
+        <p>A guided conversation can help organise a patient's own descriptions into a clearer structure.</p>
       </article>
-
-      <article class="card">
-        <div class="card-icon">文</div>
-        <p class="number">03 / LANGUAGE</p>
-        <h3>Language and comfort</h3>
-        <p>People may feel more comfortable describing their concerns in a familiar language.</p>
+      <article class="value-card">
+        <div class="card-icon">↗</div>
+        <h3>Prepare for the consultation</h3>
+        <p>A patient-reviewed summary can help support communication with a healthcare professional.</p>
       </article>
     </div>
-
-    <p class="small-note">These are product-design hypotheses to validate with patients and healthcare professionals.</p>
   </div>
 </section>
 
-<!-- JOURNEY -->
-<section class="content journey" id="how">
+<section class="section process-section" id="how-it-works">
   <div class="container">
-
-    <div class="center">
-      <p class="label">HOW IT WORKS</p>
-      <h2>Five steps towards a <em>clearer conversation.</em></h2>
-      <p>A guided preparation journey designed around a familiar mobile channel.</p>
+    <div class="section-heading">
+      <span class="eyebrow">The patient journey</span>
+      <h2>From uncertainty to a clearer conversation.</h2>
+      <p>The intended experience is simple, guided and focused on helping patients prepare for a healthcare consultation.</p>
     </div>
-
-    <div class="steps">
-      <article class="step">
-        <span class="step-number">01</span>
-        <h3>Open</h3>
-        <p>Start from a clinic QR code or the service's WhatsApp entry point.</p>
+    <div class="process-grid">
+      <article class="process-card">
+        <div class="step-number">01 / START</div>
+        <h3>Open the conversation</h3>
+        <p>The patient accesses the service through a participating healthcare provider's WhatsApp entry point.</p>
       </article>
-
-      <article class="step">
-        <span class="step-number">02</span>
-        <h3>Choose</h3>
-        <p>Select an available language and review privacy information and consent.</p>
+      <article class="process-card">
+        <div class="step-number">02 / CHOOSE</div>
+        <h3>Select a language</h3>
+        <p>The patient chooses an available language for the guided experience.</p>
       </article>
-
-      <article class="step">
-        <span class="step-number">03</span>
-        <h3>Prepare</h3>
-        <p>Respond to guided prompts in your own words.</p>
+      <article class="process-card">
+        <div class="step-number">03 / EXPLAIN</div>
+        <h3>Describe concerns</h3>
+        <p>Guided prompts help the patient organise the information they want to communicate.</p>
       </article>
-
-      <article class="step">
-        <span class="step-number">04</span>
-        <h3>Review</h3>
-        <p>Check the summary, make corrections and decide whether to use it.</p>
-      </article>
-
-      <article class="step">
-        <span class="step-number">05</span>
-        <h3>Connect</h3>
-        <p>Take your approved summary into your consultation.</p>
+      <article class="process-card">
+        <div class="step-number">04 / PREPARE</div>
+        <h3>Review a summary</h3>
+        <p>The patient reviews the prepared summary before choosing whether to share it with a provider.</p>
       </article>
     </div>
-
-    <p class="small-note" style="margin-top:25px">
-      Urgent concerns must not wait for an ordinary chatbot questionnaire.
-      Clinical safety and escalation pathways must be reviewed before live use.
-    </p>
   </div>
 </section>
 
-<!-- PATIENTS -->
-<section class="content" id="patients">
-  <div class="container audience">
-
-    <div>
-      <p class="label">FOR PATIENTS</p>
-      <h2>Go into your appointment with your thoughts <em>organised.</em></h2>
-
-      <p>
-        The intended experience helps you put your concerns into words,
-        review what has been captured and stay in control of what you
-        choose to share.
-      </p>
-
-      <ul class="ticks">
-        <li>Describe your concern in your own words</li>
-        <li>Prepare questions you want to ask</li>
-        <li>Review and correct your summary</li>
-        <li>Choose whether to share it</li>
+<section class="section" id="patients">
+  <div class="container split-section">
+    <div class="feature-copy">
+      <span class="eyebrow">For patients</span>
+      <h2>Feel more prepared before you walk in.</h2>
+      <p>Finding the right words can be difficult, especially when you are worried or communicating in a language that is not your first choice.</p>
+      <ul class="feature-list">
+        <li><span class="check">✓</span><span>Organise what you have been experiencing in a guided conversation.</span></li>
+        <li><span class="check">✓</span><span>Choose from the languages made available by the service.</span></li>
+        <li><span class="check">✓</span><span>Review your information before deciding whether to share it.</span></li>
       </ul>
-
-      <a href="#contact" class="btn primary">Register interest →</a>
     </div>
+    <div class="feature-panel">
+      <div class="summary-window">
+        <div class="summary-head">
+          <strong>Consultation preparation</strong>
+          <span class="summary-status">PREVIEW</span>
+        </div>
+        <div class="summary-label">Patient's concern</div>
+        <div class="summary-text">Patient describes recurring headaches over the past few days.</div>
+        <div class="summary-label">Additional information</div>
+        <div class="summary-text">Further details would be organised from the patient's own answers and reviewed by the patient.</div>
+        <div class="summary-label">Patient review</div>
+        <div class="summary-text">The patient checks the summary for accuracy before deciding whether to share it.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="visual-panel">
-      <div class="phone">
-        <div class="phone-screen">
-          <strong>IsoHealthGuide</strong>
-          <p>Let's prepare for your visit.</p>
-          <p>What would you like help organising?</p>
-          <div class="phone-option">My main concern ＋</div>
-          <div class="phone-option">When it started ＋</div>
-          <div class="phone-option">Questions for my visit ＋</div>
-          <p>A preparation tool, not a diagnosis.</p>
+<section class="section" id="providers" style="background:white;">
+  <div class="container split-section">
+    <div class="feature-panel">
+      <div class="summary-window">
+        <div class="summary-head">
+          <strong>Consultation overview</strong>
+          <span class="summary-status">ILLUSTRATIVE</span>
+        </div>
+        <div class="summary-label">Communication support</div>
+        <div class="summary-text">A structured view of the concerns the patient has chosen to share.</div>
+        <div class="summary-label">Patient's own account</div>
+        <div class="summary-text">A concise summary based on the patient's responses, without adding a diagnosis.</div>
+        <div class="summary-label">For the healthcare professional</div>
+        <div class="summary-text">A starting point for discussion during the consultation — not a clinical decision.</div>
+      </div>
+    </div>
+    <div class="feature-copy">
+      <span class="eyebrow">For healthcare providers</span>
+      <h2>Support the conversation. Keep care human.</h2>
+      <p>IsoHealthGuide SA is being developed as a communication-support tool that could help patients arrive better prepared to explain their concerns.</p>
+      <ul class="feature-list">
+        <li><span class="check">✓</span><span>Structured patient-reported information.</span></li>
+        <li><span class="check">✓</span><span>A patient review step before information is shared.</span></li>
+        <li><span class="check">✓</span><span>A tool designed to complement, not replace, professional judgement.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section safety">
+  <div class="container safety-grid">
+    <div class="section-heading" style="margin:0;">
+      <span class="eyebrow">Our responsibility</span>
+      <h2>Technology should know its limits.</h2>
+      <p>IsoHealthGuide SA is intended to support communication and preparation — not to make medical decisions. Clinical care remains with qualified healthcare professionals.</p>
+    </div>
+    <div class="safety-box">
+      <div class="safety-row">
+        <div class="safety-symbol">01</div>
+        <div><strong>Not a diagnosis tool</strong><p>The service is not designed to diagnose conditions or recommend treatment.</p></div>
+      </div>
+      <div class="safety-row">
+        <div class="safety-symbol">02</div>
+        <div><strong>Professional care comes first</strong><p>It is intended to support conversations with healthcare professionals, not replace them.</p></div>
+      </div>
+      <div class="safety-row">
+        <div class="safety-symbol">03</div>
+        <div><strong>Privacy by design</strong><p>Personal health information requires careful consent, security and privacy safeguards before any live service is launched.</p></div>
+      </div>
+      <div class="safety-row">
+        <div class="safety-symbol">04</div>
+        <div><strong>Safety pathways matter</strong><p>Appropriate escalation and emergency guidance must be clinically reviewed before deployment.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="partnerships">
+  <div class="container">
+    <div class="cta-panel">
+      <div>
+        <span class="eyebrow" style="color:#c8e9a6;">Let's build better communication</span>
+        <h2>Better conversations can begin before the consultation.</h2>
+        <p>We are interested in connecting with healthcare facilities, medical professionals and partners who believe communication is an important part of better patient experiences.</p>
+      </div>
+      <a class="primary-btn" href="mailto:YOUR-EMAIL-ADDRESS-HERE?subject=IsoHealthGuide%20SA%20Partnership%20Enquiry">Discuss a partnership ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/isohealthguide-logo.png" alt="IsoHealthGuide SA">
+        <p>Helping people communicate their health concerns with confidence. A South African health communication concept in development.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <strong>Explore</strong>
+          <a href="#how-it-works">How it works</a>
+          <a href="#patients">For patients</a>
+          <a href="#providers">For providers</a>
+        </div>
+        <div class="footer-col">
+          <strong>Connect</strong>
+          <a href="#partnerships">Partnerships</a>
+          <a href="mailto:YOUR-EMAIL-ADDRESS-HERE">Email us</a>
         </div>
       </div>
     </div>
-
-  </div>
-</section>
-
-<!-- CLINICS -->
-<section class="content" id="clinics">
-  <div class="container audience" style="background:#f4f7f8">
-
-    <div class="visual-panel" style="background:#e3eded">
-      <div class="summary">
-        <p class="label">PATIENT-REVIEWED SUMMARY</p>
-        <h3>Consultation speaking guide</h3>
-        <div class="summary-line">Reason for visit</div>
-        <div class="summary-line">Patient's description</div>
-        <div class="summary-line">Timeline and context</div>
-        <div class="summary-line">Questions to discuss</div>
-      </div>
-    </div>
-
-    <div>
-      <p class="label">FOR HEALTHCARE PROVIDERS</p>
-      <h2>A clearer starting point for the <em>conversation.</em></h2>
-
-      <p>
-        IsoHealthGuide SA is being developed to support patient
-        preparation and communication—not to replace clinical
-        judgement or the consultation itself.
-      </p>
-
-      <ul class="ticks">
-        <li>Structured information based on patient responses</li>
-        <li>Patient review and correction before sharing</li>
-        <li>A design that recognises language needs</li>
-        <li>Clinic workflows shaped with healthcare partners</li>
-      </ul>
-
-      <a href="#contact" class="btn primary">Discuss a partnership →</a>
-    </div>
-  </div>
-</section>
-
-<!-- SAFETY -->
-<section class="content safety">
-  <div class="container two-col">
-    <div>
-      <p class="label">OUR BOUNDARIES</p>
-      <h2>Support the conversation. <em>Never replace care.</em></h2>
-      <p>Trust must be built into the product—not added as an afterthought.</p>
-    </div>
-
-    <div class="safety-grid">
-      <div class="safety-item">
-        <strong>+ We help organise</strong>
-        <small>People can prepare what they want to discuss.</small>
-      </div>
-      <div class="safety-item">
-        <strong>+ People stay in control</strong>
-        <small>Review, correct and choose whether to share.</small>
-      </div>
-      <div class="safety-item">
-        <strong>− We do not diagnose</strong>
-        <small>Clinical decisions belong to qualified professionals.</small>
-      </div>
-      <div class="safety-item">
-        <strong>− We do not replace emergency care</strong>
-        <small>The service must never delay urgent help.</small>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="content" id="contact">
-  <div class="container contact-box">
-    <div>
-      <p class="label">LET'S BUILD BETTER HEALTHCARE CONVERSATIONS</p>
-      <h2>Interested in shaping the <em>next step?</em></h2>
-      <p>
-        We welcome conversations with clinics, healthcare professionals,
-        language specialists and organisations interested in
-        patient-centred communication.
-      </p>
-    </div>
-
-    <div>
-      <a href="mailto:YOUR-EMAIL-ADDRESS-HERE?subject=IsoHealthGuide%20Partnership"
-         class="btn light-btn">Partnership enquiry ↗</a>
-      <p class="small-note">Replace the placeholder email before publishing.</p>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-
-    <div class="footer-top">
-      <a class="footer-logo" href="#home">
-        <img src="assets/isohealthguide-logo.png" alt="IsoHealthGuide SA">
-      </a>
-
-      <div class="footer-links">
-        <a href="#how">How it works</a>
-        <a href="#patients">Patients</a>
-        <a href="#clinics">Healthcare providers</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-
     <div class="footer-bottom">
-      © <span id="year"></span> IsoHealthGuide SA. A product by Isolokukhanya.
-      <br>
-      Privacy information and contact details must be completed before launch.
+      <span>© <span id="year"></span> IsoHealthGuide SA. All rights reserved.</span>
+      <span>Currently in development · Product previews are illustrative.</span>
     </div>
-
   </div>
 </footer>
 
 <script>
-const menu = document.getElementById('menu');
-const nav = document.getElementById('navlinks');
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
-menu.addEventListener('click', function() {
-  const open = nav.classList.toggle('open');
-  menu.setAttribute('aria-expanded',open);
-  menu.textContent = open ? '×' : '☰';
+menuToggle.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.textContent = isOpen ? "×" : "☰";
 });
 
-nav.querySelectorAll('a').forEach(function(link) {
-  link.addEventListener('click',function() {
-    nav.classList.remove('open');
-    menu.setAttribute('aria-expanded','false');
-    menu.textContent = '☰';
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.textContent = "☰";
   });
 });
 
-document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
-
 </body>
 </html>
